@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.ArrayList;
 
 // Class untuk manajemen daftar tugas
@@ -28,5 +29,67 @@ class ToDoList {
     // Method untuk mendapatkan total tugas
     public int getTotalTasks() {
         return tasks.size();
+    }
+}
+
+
+// Kelas utama
+public class ToDoApp {
+
+    // Function untuk menampilkan menu dan menerima input dari pengguna
+    public static int displayMenu(Scanner scanner) {
+        System.out.println("\nMenu:");
+        System.out.println("1. Tambah tugas");
+        System.out.println("2. Hapus tugas");
+        System.out.println("3. Tampilkan daftar tugas");
+        System.out.println("4. Tandai tugas selesai");
+        System.out.println("5. Keluar");
+        System.out.print("Pilih opsi: ");
+        return scanner.nextInt();
+    }
+
+    // Function non-return type untuk menjalankan aplikasi
+    public static void runApp() {
+        Scanner scanner = new Scanner(System.in);
+        ToDoList toDoList = new ToDoList();
+
+        boolean running = true;
+        while (running) {
+            int choice = displayMenu(scanner); // Menampilkan menu dan mendapatkan pilihan
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Masukkan tugas baru: ");
+                    scanner.nextLine(); // Membersihkan buffer
+                    String task = scanner.nextLine();
+                    toDoList.addTask(task); // Menambahkan tugas baru
+                    break;
+                case 2:
+                    System.out.print("Masukkan indeks tugas yang ingin dihapus: ");
+                    int indexToRemove = scanner.nextInt() - 1;
+                    toDoList.removeTask(indexToRemove); // Menghapus tugas
+                    break;
+                case 3:
+                    toDoList.displayTasks(); // Menampilkan daftar tugas
+                    break;
+                case 4:
+                    System.out.print("Masukkan indeks tugas yang sudah selesai: ");
+                    int indexToComplete = scanner.nextInt() - 1;
+                    toDoList.markTaskAsComplete(indexToComplete); // Menandai tugas selesai
+                    break;
+                case 5:
+                    running = false; // Mengakhiri perulangan
+                    System.out.println("Terima kasih telah menggunakan aplikasi to-do list.");
+                    break;
+                default:
+                    System.out.println("Opsi tidak valid, silakan coba lagi.");
+            }
+        }
+        scanner.close();
+    }
+
+    // Main method untuk memulai program
+    public static void main(String[] args) {
+        runApp(); // Memanggil fungsi runApp
     }
 }
