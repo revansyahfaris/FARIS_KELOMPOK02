@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+
+// Class untuk manajemen daftar tugas
+class ToDoList {
+    private ArrayList<String> tasks; // Menyimpan daftar tugas
+
+    // Constructor untuk inisialisasi daftar tugas
+    public ToDoList() {
+        tasks = new ArrayList<>();
+    }
+
+    // Method untuk menambahkan tugas baru
+    public void addTask(String task) {
+        tasks.add(task);
+        System.out.println("Tugas \"" + task + "\" berhasil ditambahkan.");
+    }
+
+    // Method untuk menghapus tugas berdasarkan indeks
+    public void removeTask(int index) {
+        if (index >= 0 && index < tasks.size()) {
+            String removedTask = tasks.remove(index);
+            System.out.println("Tugas \"" + removedTask + "\" berhasil dihapus.");
+        } else {
+            System.out.println("Indeks tidak valid.");
+        }
+    }
+
+    // Method untuk mendapatkan total tugas
+    public int getTotalTasks() {
+        return tasks.size();
+    }
+}
