@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Class untuk manajemen daftar tugas
 class ToDoList {
@@ -86,16 +86,26 @@ public class ToDoApp {
                     break;
                 case 2:
                     System.out.print("Masukkan indeks tugas yang ingin dihapus: ");
-                    int indexToRemove = scanner.nextInt() - 1;
-                    toDoList.removeTask(indexToRemove); // Menghapus tugas
+                    if (scanner.hasNextInt()) {
+                        int indexToRemove = scanner.nextInt() - 1;
+                        toDoList.removeTask(indexToRemove); // Menghapus tugas
+                    } else {
+                        System.out.println("Masukan angka yang valid.");
+                        scanner.next(); // Mengabaikan input yang tidak valid
+                    }
                     break;
                 case 3:
                     toDoList.displayTasks(); // Menampilkan daftar tugas
                     break;
                 case 4:
                     System.out.print("Masukkan indeks tugas yang sudah selesai: ");
-                    int indexToComplete = scanner.nextInt() - 1;
-                    toDoList.markTaskAsComplete(indexToComplete); // Menandai tugas selesai
+                    if (scanner.hasNextInt()) {
+                        int indexToComplete = scanner.nextInt() - 1;
+                        toDoList.markTaskAsComplete(indexToComplete); // Menandai tugas selesai
+                    } else {
+                        System.out.println("Masukan angka yang valid.");
+                        scanner.next(); // Mengabaikan input yang tidak valid
+                    }
                     break;
                 case 5:
                     running = false; // Mengakhiri perulangan
