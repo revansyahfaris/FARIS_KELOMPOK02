@@ -30,8 +30,28 @@ class ToDoList {
     public int getTotalTasks() {
         return tasks.size();
     }
-}
 
+// Method untuk menampilkan daftar tugas
+    public void displayTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("Tidak ada tugas yang harus dikerjakan.");
+        } else {
+            System.out.println("Daftar tugas:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
+    // Method untuk menandai tugas sebagai selesai
+    public void markTaskAsComplete(int index) {
+        if (index >= 0 && index < tasks.size()) {
+            System.out.println("Tugas \"" + tasks.get(index) + "\" selesai.");
+            tasks.remove(index);
+        } else {
+            System.out.println("Indeks tidak valid.");
+        }
+    }
+}
 
 // Kelas utama
 public class ToDoApp {
@@ -93,3 +113,4 @@ public class ToDoApp {
         runApp(); // Memanggil fungsi runApp
     }
 }
+    
